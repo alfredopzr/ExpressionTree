@@ -71,11 +71,11 @@ class BTree {
 		return top.treeNode;
 	}
 
-	//Function to insert Character into Tree
+	//Function to insert into Tree
 	private void insert(char val) {
 		try {
 			//if its an operand
-			if(val != '-' || val != '+' || val != '*' || val != '/') {
+			if(!isOperator(val)) {
 				TreeNode nptree = new TreeNode(val);
 				push(nptree);
 			}
@@ -98,9 +98,15 @@ class BTree {
         return ch == '+' || ch == '-' || ch == '*' || ch == '/';
     }
 	
-	//Function to build tree from input
-	public void buildTree(String eqn) {
+	//Function to build tree for PreFix form from input
+	public void buildTreePre(String eqn) {
 		for(int i = eqn.length()- 1; i>= 0; i--) {
+			insert(eqn.charAt(i));
+		}
+	}
+	//Function to build tree for PostFix form from input
+	public void buildTreePost(String eqn) {
+		for(int i = 0; i <= eqn.length() - 1; i++) {
 			insert(eqn.charAt(i));
 		}
 	}
